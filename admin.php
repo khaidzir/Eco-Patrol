@@ -149,7 +149,7 @@
 		</div><!-- end of .tab_container -->
 		</article><!-- end of content manager article -->
 
-		<article class="module width_quarter">
+		<!-- <article class="module width_quarter">
 			<header><h3>Suara Pembaca</h3></header>
 			<div class="message_list">
 				<div class="module_content">
@@ -171,7 +171,7 @@
 					<input type="submit" class="btn_post_message" value=""/>
 				</form>
 			</footer>
-		</article><!-- end of messages article -->
+		</article> --><!-- end of messages article -->
 		
 
 		<div class="clear"></div>

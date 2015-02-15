@@ -127,7 +127,7 @@ Modified by : EcoPatrol
 						<p>Apa Pengaduanmu?</p>
 						<form method="post" action="submit-pengaduan.php">
 							<input type="text" placeholder="No. ID" name="ID" required="true">
-							<input type="text" class="active" placeholder="Nama" required="" name="Nama">
+							<input type="text" placeholder="Nama" required="" name="Nama">
 							<input type="text" placeholder="Email" required="" name="Email">
 							<input type="text" list="taman" placeholder="Taman" required="" name="Taman">
 							<datalist id="taman">
@@ -141,7 +141,8 @@ Modified by : EcoPatrol
 									require_once("kategori.php");
 								?>
 							</datalist>
-							<textarea placeholder="Isi Pengaduan" required="" name="Aduan"></textarea>
+							<textarea placeholder="Isi Pengaduan (Foto jika ada)" required="" name="Aduan"></textarea>
+							<input type="file" placeholder="Foto" name="datafile" size="40">
 							<div class="sub-button">
 								<input type="submit" value="Kirimkan">
 							</div>
@@ -188,7 +189,7 @@ Modified by : EcoPatrol
 			    <div class="clearfix"> </div>
 			</div>
 			<div class="clients-bottom">
-				<p>Suara Pembaca</p>
+				<!-- <p>Suara Pembaca</p>
 				<div class="col-md-6 clients-bottom-top-left">
 						<form>
 							<input type="text" class="active" placeholder="Nama" required="">
@@ -197,8 +198,8 @@ Modified by : EcoPatrol
 								<input type="submit" value="Kirimkan">
 							</div>
 						</form>	
-					</div>
-				<div class="col-md-6 clients-bottom-top-right">
+					</div> -->
+				<!-- <div class="col-md-6 clients-bottom-top-right">
 					<div class="clients-btm">
 						<div  id="top" class="callbacks_container">
 			      		<ul class="rslides" id="slider5">
@@ -227,7 +228,7 @@ Modified by : EcoPatrol
 			    		</div>
 			    	<div class="clearfix"> </div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
