@@ -100,12 +100,8 @@
 			<header><h3>Stats</h3></header>
 			<div class="module_content">
 				<article class="stats_graph">
-					<p class="overview_today">Total Pengaduan : 
-					<?php 
-						require_once('pengaduan.php');
-						echo countAllPost();
-					?>
-					</p>
+					<h4>Jumlah Pengaduan Per Bulan Tahun 2015</h4>
+					<?php require_once('graphInYear.php'); ?>
 				</article>
 				
 				<article class="stats_overview">
@@ -113,6 +109,7 @@
 						<p class="overview_day">Hari ini</p>
 						<p class="overview_count">
 							<?php 
+								require_once('pengaduan.php');
 								echo countTodayPost();
 							?>
 						</p>
