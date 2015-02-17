@@ -67,7 +67,7 @@ function deletePengaduan($conn, $idPengaduan) {
 }
 
 function changeStatusPengaduan($conn, $idPengaduan, $status) {
-	$query = "UPDATE pengaduan SET status=$status WHERE id=$idPengaduan";
+	$query = "UPDATE pengaduan SET status='$status' WHERE id=$idPengaduan";
 	mysqli_query($conn, $query);
 }
 

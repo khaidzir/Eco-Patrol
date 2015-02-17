@@ -1,4 +1,5 @@
 <?php
+/**************** List aduan di halaman utama *****************/
 	require_once("database_connection.php");
 	require_once("pengaduan.php");
 	
