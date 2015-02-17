@@ -42,8 +42,8 @@ Modified by : EcoPatrol
 			<li><img src="images/Eco-logo.png" alt=""/></li>
 			
 		</ul>
-		<h2>WELCOME TO ECOPATROL</h2>
-		<h1>We help you patrol the Park</h1>
+		<h2>SELAMAT DATANG DI ECOPATROL</h2>
+		<h1>Website penjaga taman di Bandung</h1>
 		<div class="header-top-bottom">
 			<a href="#lapor" class="scroll"><img src="images/logo-3.png" alt=""/></a>
 		</div>
@@ -126,7 +126,7 @@ Modified by : EcoPatrol
 					<div class="col-md-6 touch-left">
 						<p>Apa Pengaduanmu?</p>
 						<form method="post" action="submit-pengaduan.php">
-							<input type="text" placeholder="No. ID" name="ID" required="true">
+							<input type="text" placeholder="KTP/SIM" name="ID" required="true">
 							<input type="text" placeholder="Nama" required="" name="Nama">
 							<input type="text" placeholder="Email" required="" name="Email">
 							<input type="text" list="taman" placeholder="Taman" required="" name="Taman">

@@ -36,7 +36,7 @@ while($row = mysqli_fetch_array($result)) {
 	<td>$nama</td> 
 	<td>$jabatan</td> 
 	<td>$email</td> 
-	<td><input type='image' src='images/icn_alert_success.png' title='Edit'><input type='image' src='images/icn_alert_error.png' title='Trash'></td> 
+	<td><input type='image' src='images/icn_edit_article.png' title='Edit'><input type='image' src='images/icn_alert_error.png' title='Hapus'></td> 
 	</tr> ";
 }
 

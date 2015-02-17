@@ -70,7 +70,7 @@
 				else
 					header("location:index.php");
 			?>
-			<p>Admin <?php echo $user ?>(<a href="#">3 Pesan Masuk</a>)</p>
+			<p>Admin <?php echo $user ?></p>
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
@@ -81,17 +81,13 @@
 	<aside id="sidebar" class="column">
 		<h3>Content</h3>
 		<ul class="toggle">
-			<li class="icn_categories"><a href="#" onclick="return showComplains();" >Kategori</a></li>
-			<li class="icn_tags"><a href="#">Tags</a></li>
+			<li class="icn_categories"><a href="#" onclick="return showComplains();" >Daftar Pengaduan</a></li>
+			<li class="icn_categories"><a href="#">Daftar Kategori</a></li>
+			<li class="icn_categories"><a href="#">Daftar Taman</a></li>
 		</ul>
 		<h3>Users</h3>
 		<ul class="toggle">
 			<li class="icn_view_users"><a href="#" onclick="return showUsers();">Lihat semua pengguna</a></li>
-			<li class="icn_profile"><a href="#">Profile</a></li>
-		</ul>
-		<h3>Admin</h3>
-		<ul class="toggle">
-			<li class="icn_settings"><a href="#">Pengaturan</a></li>
 		</ul>
 	</aside><!-- end of sidebar -->
 	
@@ -101,23 +97,32 @@
 			<header><h3>Stats</h3></header>
 			<div class="module_content">
 				<article class="stats_graph">
-					<img src="http://chart.apis.google.com/chart?chxr=0,0,3000&chxt=y&chs=520x140&cht=lc&chco=76A4FB,80C65A&chd=s:Tdjpsvyvttmiihgmnrst,OTbdcfhhggcTUTTUadfk&chls=2|2&chma=40,20,20,30" width="520" height="140" alt="" />
+					<p class="overview_today">Total Pengaduan : 
+					<?php 
+						require_once('pengaduan.php');
+						echo countAllPost();
+					?>
+					</p>
 				</article>
 				
 				<article class="stats_overview">
 					<div class="overview_today">
-						<p class="overview_day">Today</p>
-						<p class="overview_count">1,876</p>
-						<p class="overview_type">Hits</p>
-						<p class="overview_count">2,103</p>
-						<p class="overview_type">Views</p>
+						<p class="overview_day">Hari ini</p>
+						<p class="overview_count">
+							<?php 
+								echo countTodayPost();
+							?>
+						</p>
+						<p class="overview_type">Pengaduan</p>
 					</div>
 					<div class="overview_previous">
-						<p class="overview_day">Yesterday</p>
-						<p class="overview_count">1,646</p>
-						<p class="overview_type">Hits</p>
-						<p class="overview_count">2,054</p>
-						<p class="overview_type">Views</p>
+						<p class="overview_day">Bulan ini</p>
+						<p class="overview_count">
+							<?php 
+								echo countMonthPost();
+							?>
+						</p>
+						<p class="overview_type">Pengauduan</p>
 					</div>
 				</article>
 				<div class="clear"></div>
@@ -148,6 +153,7 @@
 			</div><!-- end of #tab1 -->	
 		</div><!-- end of .tab_container -->
 		</article><!-- end of content manager article -->
+		
 
 		<!-- <article class="module width_quarter">
 			<header><h3>Suara Pembaca</h3></header>

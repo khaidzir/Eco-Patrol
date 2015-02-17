@@ -1227,6 +1227,7 @@ padding: 7em 0px;
   position: relative;
   float: left;
   width: 100%;
+  min-height: 300px;
 }
 .callbacks {
   position: relative;

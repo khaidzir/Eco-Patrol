@@ -142,4 +142,47 @@ function changeDateFormat($date) {
 	return $ret;
 }
 
+function countTodayPost(){
+	$con = mysql_connect("localhost","root","");
+	if(!$con)
+	{
+		die('error');
+	}
+	mysql_select_db("eco_patrol",$con);
+	$date = date("Y-m-d");
+	$query = "SELECT COUNT(`id`) AS `jumlah` FROM pengaduan WHERE tanggal LIKE '$date%'";
+	$result = mysql_query($query);
+	$row = mysql_fetch_array($result);
+	mysql_close();
+	return $row['jumlah'];
+}
+
+function countMonthPost(){
+	$con = mysql_connect("localhost","root","");
+	if(!$con)
+	{
+		die('error');
+	}
+	mysql_select_db("eco_patrol",$con);
+	$date = date("Y-m");
+	$query = "SELECT COUNT(`id`) AS `jumlah` FROM pengaduan WHERE tanggal LIKE '$date%'";
+	$result = mysql_query($query);
+	$row = mysql_fetch_array($result);
+	mysql_close();
+	return $row['jumlah'];	
+}
+
+function countAllPost(){
+	$con = mysql_connect("localhost","root","");
+	if(!$con)
+	{
+		die('error');
+	}
+	mysql_select_db("eco_patrol",$con);
+	$query = "SELECT COUNT(`id`) AS `jumlah` FROM pengaduan";
+	$result = mysql_query($query);
+	$row = mysql_fetch_array($result);
+	mysql_close();
+	return $row['jumlah'];	
+}
 ?>

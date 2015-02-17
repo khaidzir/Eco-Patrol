@@ -7,7 +7,7 @@ echo "<table class='tablesorter' cellspacing='0'>
 			<thead> 
 				<tr> 
    					<th></th> 
-    				<th>Isi Aduan</th>
+    				<th width='300'>Isi Aduan</th>
     				<th>Taman</th> 
     				<th>Kategori</th> 
     				<th>Tanggal</th> 
@@ -16,7 +16,7 @@ echo "<table class='tablesorter' cellspacing='0'>
 			</thead> 
 			<tbody> ";
 			
-$server = "";
+$server = "localhost";
 $username = "root";
 $password = "";
 $dbname = "eco_patrol";
@@ -24,28 +24,31 @@ $conn = connect_database($server, $username, $password, $dbname);
 
 $query = 
 "SELECT
-	pengaduan.deskripsi, taman.nama as taman, kategori.nama as kategori, pengaduan.tanggal
+	pengaduan.id AS id, pengaduan.deskripsi, taman.nama as taman, kategori.nama as kategori, pengaduan.tanggal
 FROM
-	pengaduan, mengadu, taman, kategori
+	pengaduan, taman, kategori
 WHERE
-	pengaduan.id = mengadu.pengaduan_id AND mengadu.taman_id = taman.id AND pengaduan.id_kategori = kategori.id
+	 pengaduan.id_taman = taman.id AND pengaduan.id_kategori = kategori.id
 ORDER BY
 	pengaduan.tanggal ASC";
 
 $result = mysqli_query($conn, $query);
 while($row = mysqli_fetch_array($result)) {
+	$id = $row['id'];
 	$isiaduan = $row["deskripsi"];
 	$taman = $row["taman"];
 	$kategori = $row["kategori"];
 	$tanggal = changeDateFormat($row["tanggal"]);
 	echo "
 	<tr> 
-	<td><input type='checkbox'></td> 
+	<td><input type='checkbox'>
+	<input type='hidden' value='$id'>
+	</td> 
 	<td>$isiaduan</td>
 	<td>$taman</td> 
 	<td>$kategori</td> 
 	<td>$tanggal</td> 
-	<td><input type='image' src='images/icn_alert_success.png' title='Edit'><input type='image' src='images/icn_alert_error.png' title='Trash'></td> 
+	<td><input type='image' src='images/icn_alert_success.png' title='Setujui'><input type='image' src='images/icn_alert_error.png' title='Hapus'></td> 
 </tr> ";
 }
 
