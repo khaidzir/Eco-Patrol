@@ -2,7 +2,7 @@
 	require_once("database_connection.php");
 	require_once("pengaduan.php");
 
-	$tahun = $_GET['tahun'];
+	$tahun = '2015';
 	$server = "localhost";
 	$username = "root";
 	$password = "";
@@ -58,4 +58,4 @@
 				responsive : true
 			});
 		}
-	</script>';
+	</script>
