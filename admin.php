@@ -81,14 +81,17 @@
 	<aside id="sidebar" class="column">
 		<h3>Content</h3>
 		<ul class="toggle">
-			<li class="icn_categories"><a href="#" onclick="return showComplains();" >Daftar Pengaduan</a></li>
-			<li class="icn_categories"><a href="#">Daftar Kategori</a></li>
-			<li class="icn_categories"><a href="#">Daftar Taman</a></li>
+			<li class="icn_categories"><a href="#" onclick="return showComplains(0,0,0,0);" >Daftar Pengaduan</a></li>
+			<li class="icn_categories"><a href="#" onclick="return showKategori();" >Daftar Kategori</a></li>
+			<li class="icn_categories"><a href="#" onclick="return showTaman();" >Daftar Taman</a></li>
 		</ul>
-		<h3>Users</h3>
-		<ul class="toggle">
-			<li class="icn_view_users"><a href="#" onclick="return showUsers();">Lihat semua pengguna</a></li>
-		</ul>
+		<?php if ($user=="admin") {
+			echo '<h3>Users</h3>
+				<ul class="toggle">
+				<li class="icn_view_users"><a href="#" onclick="return showUsers(0,0);">Lihat semua pengguna</a></li>
+			</ul>';
+		}
+		?>
 	</aside><!-- end of sidebar -->
 	
 	<section id="main" class="column">
