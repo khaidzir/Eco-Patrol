@@ -9,7 +9,7 @@
 	$conn = connect_database($server, $username, $password, $db);
 	
 	$query = "SELECT pengaduan.deskripsi, taman.nama FROM pengaduan, taman
-				WHERE pengaduan.id_taman = taman.id
+				WHERE pengaduan.id_taman = taman.id AND pengaduan.status NOT LIKE '%belum diverifikasi%'
 				ORDER BY pengaduan.tanggal DESC";
 	
 	$result = mysqli_query($conn, $query);
