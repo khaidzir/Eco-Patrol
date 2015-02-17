@@ -35,7 +35,8 @@ while($row = mysqli_fetch_array($listTaman)) {
 	<tr> ";
 	if($admin) echo "<td><input type='checkbox'></td> ";
 	echo "<td>$taman</td> ";
-	if ($admin) echo"<td><input type='image' src='images/icn_alert_success.png' title='Setujui'><input type='image' src='images/icn_alert_error.png' title='Hapus'></td>";
+	if ($admin) echo"<td><input type='image' src='images/icn_alert_success.png' title='Setujui'>
+		<input type='image' src='images/icn_alert_error.png' title='Hapus' onclick='return deleteTaman($id);'></td>";
 echo "</tr> ";
 }
 

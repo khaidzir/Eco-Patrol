@@ -82,8 +82,8 @@
 		<h3>Content</h3>
 		<ul class="toggle">
 			<li class="icn_categories"><a href="#" onclick="return showComplains(0,0,0,0);" >Daftar Pengaduan</a></li>
-			<li class="icn_categories"><a href="#" onclick="return showKategori();" >Daftar Kategori</a></li>
-			<li class="icn_categories"><a href="#" onclick="return showTaman();" >Daftar Taman</a></li>
+			<li class="icn_categories"><a href="#" onclick="return showKategori(0,0);" >Daftar Kategori</a></li>
+			<li class="icn_categories"><a href="#" onclick="return showTaman(0,0);" >Daftar Taman</a></li>
 		</ul>
 		<?php if ($user=="admin") {
 			echo '<h3>Users</h3>

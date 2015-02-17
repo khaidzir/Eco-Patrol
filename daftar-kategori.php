@@ -38,7 +38,7 @@ while($row = mysqli_fetch_array($listKategori)) {
 	echo "<td>$kategori</td>";
 	
 	if ($admin) {
-		echo"<td><input type='image' src='images/icn_alert_success.png' title='Setujui'><input type='image' src='images/icn_alert_error.png' title='Hapus'></td> 
+		echo"<td><input type='image' src='images/icn_alert_error.png' title='Hapus' onclick='return deleteKategori($id);'></td> 
 	</tr> ";
 	}
 }

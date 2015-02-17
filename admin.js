@@ -36,13 +36,6 @@ function ajaxGet(filePhp) {
 	return true;
 }
 
-function showTaman() {
-	ajaxPost("daftar-taman.php");
-}
-
-function showKategori() {
-	ajaxPost("daftar-kategori.php");
-}
 
 /************** Fungsi-fungsi Pengaduan ******************/
 function showComplains(flag, id, kategori, taman) {
@@ -100,6 +93,42 @@ function deleteUser(username) {
 	var cek = confirm("Apakah anda yakin akan menghapus user " + username + "?");
 	if (cek == true) {
 		return showUsers(1, username);
+	}
+	return false;
+}
+
+
+
+/****************** Fungsi-fungsi kategori ***********************/
+function showKategori(flag, id) {
+	if (flag == 0) {
+		ajaxPost("daftar-kategori.php");
+	} else if (flag == 1) {	// Menghapus kategori
+		ajaxGet("ubah-kategori.php?del="+id);
+	}
+}
+
+function deleteKategori(id) {
+	var cek = confirm("Apakah anda yakin akan menghapus kategori ini?");
+	if (cek == true) {
+		return showKategori(1, id);
+	}
+	return false;
+}
+
+/******************** Fungsi-fungsi taman *****************************/
+function showTaman(flag, id) {
+	if (flag == 0) {
+		ajaxPost("daftar-taman.php");
+	} else if (flag == 1) {		// Menghapus taman
+		ajaxGet("ubah-taman.php?del="+id);
+	}
+}
+
+function deleteTaman(id) {
+	var cek = confirm("Apakah anda yakin akan menghapus taman ini?");
+	if (cek == true) {
+		return showTaman(1, id);
 	}
 	return false;
 }

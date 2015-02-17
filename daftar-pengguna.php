@@ -30,7 +30,7 @@ while($row = mysqli_fetch_array($result)) {
 	$jabatan = $row["jabatan"];
 	$email = $row["email"];
 	echo "
-	<tr> 
+	<tr id='row$user'>
 	<td><input type='checkbox'></td> 
 	<td>$user</td>
 	<td>$nama</td> 

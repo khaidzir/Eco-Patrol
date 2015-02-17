@@ -60,12 +60,29 @@ function addPelapor($conn, $id, $nama, $email) {
 	mysqli_query($conn, $query);
 }
 
-/************* Fungsi lain - lain **************/
+function addKategori($conn, $kategori) {
+	$query = "INSERT INTO kategori (nama) VALUES ('$kategori')";
+	mysqli_query($conn, $query);
+}
+
+/**************** Fungsi-fungsi delete ********************/
 function deletePengaduan($conn, $idPengaduan) {
 	$query = "DELETE FROM pengaduan WHERE id=$idPengaduan";
 	mysqli_query($conn, $query);
 }
 
+function deleteKategori($conn, $idKategori) {
+	$query = "DELETE FROM kategori WHERE id=$idKategori";
+	mysqli_query($conn, $query);
+}
+
+function deleteTaman($conn, $idTaman) {
+	$query = "DELETE FROM taman WHERE id=$idTaman";
+	mysqli_query($conn, $query);
+}
+
+
+/************* Fungsi lain - lain **************/
 function changeStatusPengaduan($conn, $idPengaduan, $status) {
 	$query = "UPDATE pengaduan SET status='$status' WHERE id=$idPengaduan";
 	mysqli_query($conn, $query);
@@ -84,7 +101,7 @@ function submitPengaduan($conn, $idPelapor, $nama, $email, $taman, $kategori, $p
 	
 	addPengaduan($conn, $idKategori, $idPelapor, $idTaman, $pengaduan, $tanggal, $status, $foto);
 }
-// from dan to array
+// from dan to =  array
 function sendEmail($username, $password, $subject, $from, $to, $body) {
 	$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl");
 	$transport->setUsername($username);
