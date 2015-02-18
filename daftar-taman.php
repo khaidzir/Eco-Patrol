@@ -42,6 +42,10 @@ echo "</tr> ";
 
 echo "</tbody> 
 			</table>";
+
+echo "<div id=\"tab2\">
+	<input type='button' value='Tambah' onclick='initAddTaman();'></input>
+	</div>";
 			
 mysqli_free_result($listTaman);
 close_connection($conn);

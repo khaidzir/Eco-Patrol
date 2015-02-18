@@ -21,8 +21,8 @@ submitPengaduan($conn, $idPelapor, $nama, $email, $taman, $kategori, $aduan);
 $subject = "[Notifikasi] Eco Patrol";
 $user = "bekantan.terbang@gmail.com";
 $pass = "bekantanterbang";
-sendEmailNotifications($conn, $kategori, $user, $pass, $subject, $aduan);
-
+sendEmailAdmin($conn, $nama, $email, $taman, $kategori, $aduan);
+sendEmailPelapor($email);
 close_connection($conn);
 header("location:index.php");
 

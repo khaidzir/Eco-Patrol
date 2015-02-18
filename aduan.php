@@ -62,7 +62,6 @@ while($row = mysqli_fetch_array($result)) {
 	echo "
 	<tr> 
 	<td><input type='checkbox'>
-	<input type='hidden' value='$id'>
 	</td> 
 	<td>$isiaduan</td>
 	<td>$taman</td> 
@@ -72,7 +71,7 @@ while($row = mysqli_fetch_array($result)) {
 	if ($user == "admin") {
 		if($status=="Belum diverifikasi"){
 			echo"<td><input type='image' src='images/icn_alert_success.png' title='Setujui' 
-				onclick='return acceptPengaduan($id, " . '"'. $kategori . '", ' . '"' . $taman . '");' . "'>";
+				onclick='return acceptPengaduan($id, \"$kategori\", \"$taman\");'>";
 		} else {
 			echo"<td>";
 		}

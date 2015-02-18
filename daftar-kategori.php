@@ -45,6 +45,10 @@ while($row = mysqli_fetch_array($listKategori)) {
 
 echo "</tbody> 
 			</table>";
+
+echo "<div id=\"tab2\">
+	<input type='button' value='Tambah' onclick='initAddKategori();'></input>
+	</div>";
 			
 mysqli_free_result($listKategori);
 close_connection($conn);

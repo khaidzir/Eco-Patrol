@@ -16,6 +16,8 @@ if (isset($_GET["del"])) {
 	deleteKategori($conn, $id);
 } else if (isset($_GET["edit"])) {
 	$id = $_GET["edit"];
+} else if (isset($_POST["akategori"])) {
+	addKategori($conn, $_POST["akategori"]);
 }
 
 require_once("daftar-kategori.php");

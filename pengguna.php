@@ -22,4 +22,10 @@ function addUser($conn, $username, $password, $nama, $jabatan, $email) {
 	mysqli_query($conn, $query);
 }
 
+function updateUser($conn, $username, $nama, $jabatan, $email) {
+	$query = "UPDATE pihak_berwenang SET nama='$nama', jabatan='$jabatan', email='$email'
+				WHERE username = '$username'";
+	mysqli_query($conn, $query);
+}
+
 ?>

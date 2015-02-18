@@ -65,6 +65,11 @@ function addKategori($conn, $kategori) {
 	mysqli_query($conn, $query);
 }
 
+function addTaman($conn, $nama, $deskripsi, $lokasi) {
+	$query = "INSERT INTO taman (nama, deskripsi, lokasi) VALUES ('$nama', '$deskripsi', '$lokasi')";
+	mysqli_query($conn, $query);
+}
+
 /**************** Fungsi-fungsi delete ********************/
 function deletePengaduan($conn, $idPengaduan) {
 	$query = "DELETE FROM pengaduan WHERE id=$idPengaduan";
@@ -96,7 +101,7 @@ function submitPengaduan($conn, $idPelapor, $nama, $email, $taman, $kategori, $p
 	
 	date_default_timezone_set("Asia/Jakarta");
 	$tanggal = date("Y-m-d H:i:s");
-	$status = "Belum diselesaikan";
+	$status = "Belum diverifikasi";
 	$foto = "belum ada foto";
 	
 	addPengaduan($conn, $idKategori, $idPelapor, $idTaman, $pengaduan, $tanggal, $status, $foto);
@@ -116,32 +121,94 @@ function sendEmail($username, $password, $subject, $from, $to, $body) {
 	$mailer->send($message);
 }
 
-function sendEmailNotifications($conn, $kategori, $username, $password, $subject, $teks) {
-	/*$query = "SELECT * FROM mengurus,kategori,pihak_berwenang WHERE mengurus.id_kategori = kategori.id AND pihak_berwenang.username = mengurus.pihak_berwenang_username";
+function sendEmailAdmin($conn, $pelapor, $emailPelapor, $taman, $kategori, $aduan) {
+	$query = "SELECT * FROM pihak_berwenang WHERE username='admin'";
+	$result = mysqli_query($conn, $query);
+	$email;
+	$nama;
+	if ($row = mysqli_fetch_array($result)) {
+		$email = $row["email"];
+		$nama = $row["nama"];
+	} else return;
 	
-	$hasil = mysqli_query($conn, $query);
-	while($row = mysqli_fetch_array($hasil)) {
-		$to = array($row["email"] => "Nama");
-		$from = array($username => "Eco Patrol");
-		sendEmail($username, $password, $subject, $from, $to, $teks);
-	}
-	mysqli_free_result($hasil);*/
 	$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl");
 	$transport->setUsername('bekantan.terbang@gmail.com');
-	$transport->setPassword('bekantan');
+	$transport->setPassword('bekantanterbang');
 	
-	// Create the Mailer using your created Transport
 	$mailer = Swift_Mailer::newInstance($transport);
 	$message = Swift_Message::newInstance();
-	$message->setSubject('Tes Kirim Email');
+	$message->setSubject('[Notifikasi] Eco Patrol');
 	$message->setFrom(array('bekantan.terbang@gmail.com' => 'Bekantan'));
-	$message->setTo(array('dzir.shhh@gmail.com' => 'Khaidzir'));
-	$message->setBody('
-	Hi, '.$username.'.
-	konten
-');
-	$result = $mailer->send($message);
+	$message->setTo(array($email => $nama));
+	$message->setBody("Dari : $pelapor ($emailPelapor)
+Lokasi : $taman
+Kategori : $kategori
+Isi aduan : $aduan");
+	$mailer->send($message);
 }
+
+function sendEmailNotifications($conn, $namapelapor, $emailpelapor, $taman, $kategori, $aduan, $tanggal) {
+	$query = "	SELECT 
+					pihak_berwenang.*
+				FROM 
+					mengurus,kategori,pihak_berwenang 
+				WHERE 
+					mengurus.id_kategori = kategori.id AND pihak_berwenang.username = mengurus.pihak_berwenang_username AND kategori.nama = '$kategori'";
+	
+	$hasil = mysqli_query($conn, $query);
+	
+	$to; $from;
+	
+	$username = "bekantan.terbang@gmail.com";
+	$password = 'bekantanterbang';
+	$subject = "[Notifikasi] Eco Patrol";
+	/*$body = "[Aduan baru]
+Pelapoe : $namapelapor ($emailpelapor)
+Lokasi : $taman
+Kategori : $kategori
+Isi aduan : $aduan
+Tanggal : $tanggal";*/
+	
+	while($row = mysqli_fetch_array($hasil)) {
+		$to = array($row["email"] => $row["nama"]);
+		$from = array($username => "Eco Patrol");
+		//sendEmail($username, $password, $subject, $from, $to, $body);
+		$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl");
+		$transport->setUsername('bekantan.terbang@gmail.com');
+		$transport->setPassword('bekantanterbang');
+		
+		$mailer = Swift_Mailer::newInstance($transport);
+		$message = Swift_Message::newInstance();
+		$message->setSubject('[Notifikasi] Eco Patrol');
+		$message->setFrom(array('bekantan.terbang@gmail.com' => 'Bekantan'));
+		$message->setTo(array($row["email"] => $row["nama"]));
+		$message->setBody("[Aduan baru]
+Pelapor : $namapelapor ($emailpelapor)
+Lokasi : $taman
+Kategori : $kategori
+Isi aduan : $aduan
+Tanggal : $tanggal");
+		$mailer->send($message);
+	}
+	mysqli_free_result($hasil);
+}
+
+function sendEmailPelapor($emailpelapor) {
+	$username = "bekantan.terbang@gmail.com";
+	$password = 'bekantanterbang';
+	$subject = "[Notifikasi] Eco Patrol";
+	$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl");
+		$transport->setUsername('bekantan.terbang@gmail.com');
+		$transport->setPassword('bekantanterbang');
+		
+		$mailer = Swift_Mailer::newInstance($transport);
+		$message = Swift_Message::newInstance();
+		$message->setSubject('[Notifikasi] Eco Patrol');
+		$message->setFrom(array('bekantan.terbang@gmail.com' => 'Bekantan'));
+		$message->setTo(array($emailpelapor => "Pelapor"));
+		$message->setBody("Pengaduan anda sudah diterima. Terima kasih atas partisipasinya.");
+		$mailer->send($message);
+	}
 
 function changeDateFormat($date) {
 	$daftar = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",

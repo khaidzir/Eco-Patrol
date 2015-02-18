@@ -34,6 +34,37 @@ Modified by : EcoPatrol
 	</script>
 </head>
 <body>
+	<script type="text/javascript">
+	function hitungAt(email) {
+		var i;
+		var count=0;
+		for (i=0; i<email.length; i++) {
+			if (email.charAt(i) == '@') {
+				count++;
+			}
+		}
+		return count;
+	}
+	function cekEmail(email) {
+		var at = email.indexOf("@");
+		var dot = email.lastIndexOf(".");
+		if (hitungAt(email)>1 || at<1 || dot<at+2 || dot+2 > email.length) {
+			alert("Email salah!");
+			return false;
+		}
+		return true;
+	}
+	function validateEmail() {
+		var email = document.getElementById("Email").value;
+		if(email.length > 0) {
+			return cekEmail(email);
+		} else {
+			alert("Email salah!");
+			return false;
+		}
+	}
+	</script>
+
 	<!--start-banner-->
 	<div class="header" id="home">
 	<div class="header-top">
@@ -125,10 +156,10 @@ Modified by : EcoPatrol
 				<div class="touch-top">
 					<div class="col-md-6 touch-left">
 						<p>Apa Pengaduanmu?</p>
-						<form method="post" action="submit-pengaduan.php">
+						<form method="post" onsubmit="return validateEmail();" action="submit-pengaduan.php" >
 							<input type="text" placeholder="KTP/SIM" name="ID" required="true">
-							<input type="text" placeholder="Nama" required="" name="Nama">
-							<input type="text" placeholder="Email" required="" name="Email">
+							<input type="text" placeholder="Nama" required="true" name="Nama">
+							<input type="text" placeholder="Email" required="true" name="Email" id="Email">
 							<input type="text" list="taman" placeholder="Taman" required="" name="Taman">
 							<datalist id="taman">
 							    <?php

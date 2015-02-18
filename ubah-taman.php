@@ -14,10 +14,8 @@ $id;
 if (isset($_GET["del"])) {
 	$id = $_GET["del"];
 	deleteTaman($conn, $id);
-} else if (isset($_GET["acc"])) {
-	$id = $_GET["acc"];
-	changeStatusPengaduan($conn, $id, "Dalam proses");
-	//sendEmailNotifications($conn, $kategori, $username, $password, $subject, $teks);
+} else if ( isset($_POST["anama"]) && isset($_POST["adesc"]) && isset($_POST["alokasi"]) ) {	//Menambah data
+	addTaman($conn, $_POST["anama"], $_POST["adesc"], $_POST["alokasi"]);
 } else if (isset($_GET["done"])) {
 	$id = $_GET["done"];
 	changeStatusPengaduan($conn, $id, "Sudah selesai ditangani");
