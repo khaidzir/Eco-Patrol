@@ -97,7 +97,7 @@
 	<section id="main" class="column">
 		<h4 class="alert_info">Welcome Admin Page of EcoPatrol</h4>
 		<article class="module width_full">
-			<header><h3>Stats</h3></header>
+			<header><h3>Statistik</h3></header>
 			<div class="module_content">
 				<article class="stats_graph">
 					<h4>Jumlah Pengaduan Per Bulan Tahun 2015</h4>

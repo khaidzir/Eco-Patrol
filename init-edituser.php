@@ -24,7 +24,7 @@ echo "
 <td><input type='text' value='$nama' name='nama' id='nama'></td> 
 <td><input type='text' value='$jabatan' name='jabatan' id='jabatan'></td> 
 <td><input type='text' value='$email' name='email' id='email'></td> 
-<td><input type='image' src='images/icn_alert_success.png' title='OK' onclick='return editUser(\"user\", \"nama\", \"jabatan\", \"email\");'>
+<td><input type='image' src='images/icn_alert_success.png' title='OK' onclick='return editUser(\"$user\", \"nama\", \"jabatan\", \"email\");'>
 <input type='image' src='images/icn_alert_error.png' title='Cancel' onclick='return showUsers(0,0);'></td> ";
 
 

@@ -16,6 +16,8 @@ if ($row = mysqli_fetch_array($result)) {
 	session_start();
 	$_SESSION["username"] = $row["username"];
 	header("location:admin.php");
+} else {
+	echo "Username atau password salah!";
 }
 
 ?>
